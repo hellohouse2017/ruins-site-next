@@ -44,33 +44,52 @@ async function callLLM(config: AIConfig, systemPrompt: string, messages: { role:
       ...messages,
     ],
     temperature: 0.7,
-    max_tokens: 500,
+    max_tokens: 300,
   };
 
-  const res = await fetch(`${config.baseUrl}/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${config.apiKey}`,
-    },
-    body: JSON.stringify(body),
-  });
+  console.log(`[AI] Calling ${config.model} at ${config.baseUrl}...`);
 
-  if (!res.ok) {
-    const err = await res.text();
-    console.error(`[AI] ${config.model} error:`, err);
-    throw new Error(`AI API error: ${res.status}`);
+  // 8-second timeout (Vercel hobby has 10s limit)
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+
+  try {
+    const res = await fetch(`${config.baseUrl}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${config.apiKey}`,
+      },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeout);
+
+    if (!res.ok) {
+      const err = await res.text();
+      console.error(`[AI] ${config.model} HTTP ${res.status}:`, err);
+      throw new Error(`AI API error: ${res.status}`);
+    }
+
+    const data = await res.json();
+    let text = data.choices?.[0]?.message?.content || "";
+    console.log(`[AI] ${config.model} responded: ${text.slice(0, 50)}...`);
+
+    // Apply 簡→繁 conversion if needed
+    if (config.needsS2T && text) {
+      text = s2t(text);
+    }
+
+    return text;
+  } catch (err) {
+    clearTimeout(timeout);
+    if (err instanceof Error && err.name === "AbortError") {
+      console.error(`[AI] ${config.model} TIMEOUT (8s)`);
+      throw new Error("AI timeout");
+    }
+    throw err;
   }
-
-  const data = await res.json();
-  let text = data.choices?.[0]?.message?.content || "";
-
-  // Apply 簡→繁 conversion if needed
-  if (config.needsS2T && text) {
-    text = s2t(text);
-  }
-
-  return text;
 }
 
 /**
