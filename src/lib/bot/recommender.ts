@@ -33,23 +33,25 @@ function loadCatalog(): { categories: CatalogCategory[] } {
   return JSON.parse(fs.readFileSync(fp, "utf-8"));
 }
 
-// Event type → plan ID mapping
+// Event type → plan ID mapping (must match plans.json "id" field)
 const EVENT_PLAN_MAP: Record<string, string[]> = {
   "求婚": ["proposal"],
-  "婚禮": ["wedding", "afterparty"],
+  "婚禮": ["wedding_afterparty", "wedding_ceremony"],
   "抓周": ["baby"],
-  "派對": ["party", "afterparty"],
+  "派對": ["party", "wedding_afterparty"],
   "生日": ["party"],
   "會議": ["meeting"],
-  "場租": ["venue"],
+  "場租": ["rental"],
+  "場地": ["rental"],
   "公司": ["meeting", "party"],
+  "尾牙": ["party"],
 };
 
 /**
  * Recommend plans based on user's slots
  */
 export function recommendPlans(slots: SessionSlots): Plan[] {
-  const allPlans = loadPlans();
+  const allPlans = loadPlans().filter((p) => p.priceWeekday > 0); // exclude custom (price=0)
   let candidates = allPlans;
 
   // Filter by event type
@@ -66,12 +68,31 @@ export function recommendPlans(slots: SessionSlots): Plan[] {
 
   // Filter by budget
   if (slots.budget && slots.budget > 0) {
-    const inBudget = candidates.filter((p) => p.priceWeekday <= slots.budget! * 1.2); // 20% tolerance
-    if (inBudget.length > 0) candidates = inBudget;
+    const budgetMax = slots.budget * 1.2; // 20% tolerance
+    const inBudget = candidates.filter((p) => p.priceWeekday <= budgetMax);
+
+    if (inBudget.length > 0) {
+      // Some type-matched plans fit the budget
+      candidates = inBudget;
+    } else {
+      // No type-matched plan fits budget → include ALL plans in budget as alternatives
+      const allInBudget = allPlans.filter((p) => p.priceWeekday <= budgetMax);
+      // Combine: cheapest type-matched (1) + budget alternatives (2)
+      const cheapestTyped = [...candidates].sort((a, b) => a.priceWeekday - b.priceWeekday).slice(0, 1);
+      candidates = [...cheapestTyped, ...allInBudget.filter((p) => !cheapestTyped.find((t) => t.id === p.id))];
+    }
   }
 
-  // Sort: cheapest first if budget-sensitive, otherwise by relevance
-  candidates.sort((a, b) => a.priceWeekday - b.priceWeekday);
+  // Sort: closest to budget first
+  if (slots.budget && slots.budget > 0) {
+    candidates.sort((a, b) => {
+      const distA = Math.abs(a.priceWeekday - slots.budget!);
+      const distB = Math.abs(b.priceWeekday - slots.budget!);
+      return distA - distB;
+    });
+  } else {
+    candidates.sort((a, b) => a.priceWeekday - b.priceWeekday);
+  }
 
   // Return top 3
   return candidates.slice(0, 3);
