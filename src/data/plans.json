@@ -1,0 +1,252 @@
+[
+  {
+    "id": "proposal",
+    "slug": "proposal",
+    "name": "浪漫求婚包場",
+    "shortName": "求婚企劃",
+    "icon": "fas fa-heart",
+    "accentColor": "#ff0055",
+    "coverImage": "/images/proposal-cover.jpg",
+    "galleryImages": ["/images/proposal-romantic-light.jpg"],
+    "tagline": "讓廢墟的光影成為你們愛情的最佳見證",
+    "description": "在工業風的獨特場域中，MerryMe 燈條與浪漫花束交織出令人屏息的求婚場景。從暗到亮的燈光驚喜、專業的場地佈置，到拍照背板與精緻點心 — 我們為你打造一場她無法拒絕的求婚盛典。",
+    "highlights": [
+      "溫馨氣球 + 拍照背板",
+      "MerryMe 燈條佈置",
+      "求婚花束（乾燥/鮮花）",
+      "精緻自助式點心 25 人份",
+      "室內竹編椅 30 張",
+      "200 吋投影 + 音響 + 麥克風",
+      "含 3 小時場地使用"
+    ],
+    "priceWeekday": 48000,
+    "priceWeekend": 52000,
+    "priceUnit": "起",
+    "leadDays": 14,
+    "suitableFor": "10-50 人",
+    "duration": "3 小時",
+    "includes": [],
+    "allowedAddons": ["venue_extra_hr", "lights_name", "decor_table", "backdrop_flower", "upgrade_meal"],
+    "faq": [
+      { "q": "求婚場地可以提前多久佈置？", "a": "包含在 3 小時場地使用時間內，建議提前 1 小時進場佈置。若需要更多時間，可加購延時服務。" },
+      { "q": "可以帶自己的攝影師嗎？", "a": "當然可以！歡迎攜帶專業攝影師入場，場地本身就是絕佳的拍攝背景。" },
+      { "q": "求婚方案包含花束嗎？", "a": "是的，方案包含一束求婚花束（可選乾燥花或鮮花），另可加購升級鮮花主題背板。" }
+    ]
+  },
+  {
+    "id": "wedding_afterparty",
+    "slug": "wedding",
+    "name": "婚禮 After Party",
+    "shortName": "婚禮派對",
+    "icon": "fas fa-ring",
+    "accentColor": "#d4af37",
+    "coverImage": "/images/wedding-cover.jpg",
+    "galleryImages": ["/images/venue-decor-wedding.jpg"],
+    "tagline": "工業風廢墟中的非典型婚禮，讓賓客驚呼連連",
+    "description": "告別傳統婚宴的制式流程，在鹽埕區最有個性的空間裡，享受 DJ 現場演出、精緻自助餐點與暢飲服務。無論是 Welcome Party 還是 After Party，都能打造只屬於你們的獨特婚禮記憶。",
+    "highlights": [
+      "精緻自助式點心 25 人份",
+      "無酒精 5L + 雞尾酒 5L",
+      "油桶桌 4 張",
+      "DJ 現場演出 2 小時",
+      "室內竹編椅 30 張",
+      "200 吋投影 + 音響",
+      "含 3 小時場地使用"
+    ],
+    "priceWeekday": 35000,
+    "priceWeekend": 40000,
+    "priceUnit": "起",
+    "leadDays": 14,
+    "suitableFor": "20-80 人",
+    "duration": "3 小時",
+    "includes": ["snack_deluxe", "drink_na", "drink_cocktail"],
+    "allowedAddons": ["venue_extra_hr", "decor_table", "singer", "beer_cart", "bartender_100", "bartender_150", "bartender_all", "upgrade_meal"],
+    "faq": [
+      { "q": "婚禮 After Party 可以容納多少人？", "a": "室內空間建議 30-80 人最為舒適。若需要更大空間，可加購戶外區域。" },
+      { "q": "可以自帶酒水嗎？", "a": "方案已包含飲品服務。若有特殊酒水需求，請提前與我們討論客製方案。" }
+    ]
+  },
+  {
+    "id": "wedding_ceremony",
+    "slug": "wedding",
+    "name": "戶外證婚 + 派對",
+    "shortName": "戶外證婚",
+    "icon": "fas fa-ring",
+    "accentColor": "#d4af37",
+    "coverImage": "/images/wedding-cover.jpg",
+    "galleryImages": ["/images/venue-decor-wedding.jpg", "/images/venue-outdoor-vibe.jpg"],
+    "tagline": "在高雄鹽埕的天空下，許下最真摯的誓言",
+    "description": "結合戶外證婚儀式與室內派對的完美方案。拱門、走道、吐司椅、燈串 — 從莊嚴的證婚到熱鬧的派對，一次擁有兩種截然不同的氛圍體驗。",
+    "highlights": [
+      "戶外證婚區 + 拱門 + 走道",
+      "證婚區吐司椅",
+      "戶外燈串 + 室內 DJ 2 小時",
+      "精緻自助式點心 25 人份",
+      "無酒精 5L + 雞尾酒 5L",
+      "200 吋投影 + 音響",
+      "含 3 小時場地使用"
+    ],
+    "priceWeekday": 108000,
+    "priceWeekend": 128000,
+    "priceUnit": "起",
+    "leadDays": 30,
+    "suitableFor": "30-100 人",
+    "duration": "3 小時",
+    "includes": ["snack_deluxe", "drink_na", "drink_cocktail"],
+    "allowedAddons": ["venue_extra_hr", "decor_table", "wedding_flower", "singer", "beer_cart", "bartender_100", "bartender_150", "bartender_all", "upgrade_meal"],
+    "faq": []
+  },
+  {
+    "id": "baby",
+    "slug": "baby",
+    "name": "家庭慶典",
+    "shortName": "抓周/性別派對",
+    "icon": "fas fa-baby",
+    "accentColor": "#ff6b9d",
+    "coverImage": "/images/baby-cover.jpg",
+    "galleryImages": ["/images/baby-party-setup.jpg"],
+    "tagline": "廢墟風也能溫馨！長輩們都稱讚不已的派對場地",
+    "description": "誰說工業風不適合寶寶派對？獨特的場地氛圍讓拍照效果驚艷，溫馨的氣球佈置與專業的抓周道具，為寶寶的重要時刻留下最特別的回憶。",
+    "highlights": [
+      "溫馨氣球 + 拍照背板",
+      "抓周道具 / 性別氣球",
+      "精緻自助式點心 25 人份",
+      "室內竹編椅 30 張",
+      "200 吋投影 + 音響 + 麥克風",
+      "含 3 小時場地使用"
+    ],
+    "priceWeekday": 45000,
+    "priceWeekend": 50000,
+    "priceUnit": "起",
+    "leadDays": 14,
+    "suitableFor": "15-50 人",
+    "duration": "3 小時",
+    "includes": ["snack_deluxe"],
+    "allowedAddons": ["venue_extra_hr", "backdrop_name", "decor_table", "host", "upgrade_meal"],
+    "faq": [
+      { "q": "抓周派對場地適合長輩嗎？", "a": "完全適合！雖然是工業風場地，但我們會用氣球和溫馨佈置營造適合全家的氛圍。" },
+      { "q": "抓周道具需要自備嗎？", "a": "不需要，方案包含完整的抓周道具組。也歡迎攜帶家傳物品加入。" }
+    ]
+  },
+  {
+    "id": "party",
+    "slug": "party",
+    "name": "派對包套",
+    "shortName": "慶生/各式派對",
+    "icon": "fas fa-birthday-cake",
+    "accentColor": "#00f3ff",
+    "coverImage": "/images/party-cover.jpg",
+    "galleryImages": ["/images/party-dj-crowd.jpg"],
+    "tagline": "高雄最有個性的派對場地，讓你的生日成為傳說",
+    "description": "不論是生日趴、公司尾牙、同學會或主題派對 — 有酒水、有音樂、有氛圍，在廢墟裡放肆慶祝。精緻點心加上雞尾酒暢飲，打造一場賓主盡歡的完美派對。",
+    "highlights": [
+      "精緻自助式點心 25 人份",
+      "無酒精 5L×2 + 雞尾酒 5L",
+      "室內竹編椅 30 張",
+      "200 吋投影 + 音響 + 麥克風",
+      "含 3 小時場地使用"
+    ],
+    "priceWeekday": 28000,
+    "priceWeekend": 33000,
+    "priceUnit": "起",
+    "leadDays": 14,
+    "suitableFor": "10-60 人",
+    "duration": "3 小時",
+    "includes": ["drink_na", "drink_cocktail", "snack_deluxe"],
+    "allowedAddons": ["venue_extra_hr", "decor_table", "singer", "beer_cart", "bartender_100", "bartender_150", "bartender_all", "upgrade_meal"],
+    "faq": [
+      { "q": "派對包套最多可容納幾人？", "a": "建議最佳人數為 30-60 人，超過 80 人需討論場地配置。" },
+      { "q": "可以自帶蛋糕嗎？", "a": "當然可以！歡迎攜帶生日蛋糕，我們也可以協助安排。" }
+    ]
+  },
+  {
+    "id": "rental",
+    "slug": "rental",
+    "name": "純場地租借",
+    "shortName": "純場租",
+    "icon": "fas fa-building",
+    "accentColor": "#888",
+    "coverImage": "/images/venue-empty.jpg",
+    "galleryImages": ["/images/venue-outdoor-vibe.jpg"],
+    "tagline": "高雄鹽埕區最有個性的活動場地",
+    "description": "僅提供空間使用，適合有自己活動規劃團隊的你。包含基本的桌椅、投影與音響設備，其餘自由發揮。適合小型展覽、拍攝、私人聚會等。",
+    "highlights": [
+      "室內竹編椅 30 張",
+      "200 吋投影 + 音響 + 空調",
+      "含 3 小時場地使用"
+    ],
+    "priceWeekday": 10000,
+    "priceWeekend": 15000,
+    "priceUnit": "",
+    "leadDays": 2,
+    "suitableFor": "5-80 人",
+    "duration": "3 小時",
+    "includes": [],
+    "allowedAddons": ["venue_extra_hr", "table_fold_6", "chair_bamboo_extra", "drink_na", "drink_cocktail"],
+    "faq": [
+      { "q": "純場租可以自帶食物嗎？", "a": "可以，但請注意垃圾需自行清理打包。" },
+      { "q": "場地有冷氣嗎？", "a": "有的，室內空間配有空調設備。" }
+    ]
+  },
+  {
+    "id": "meeting",
+    "slug": "meeting",
+    "name": "會議包場方案",
+    "shortName": "會議包場",
+    "icon": "fas fa-briefcase",
+    "accentColor": "#6366f1",
+    "coverImage": "/images/meeting-cover.jpg",
+    "galleryImages": [],
+    "tagline": "在最有氛圍的空間裡開會，靈感自然來",
+    "description": "厭倦了千篇一律的會議室？在廢墟的獨特空間裡舉辦你的會議、講座或工作坊。含桌椅、飲品、視聽設備，會後還能直接轉成餐酒會！",
+    "highlights": [
+      "室內竹編椅 30 張",
+      "6 人折疊桌 5 張",
+      "2 桶 5L 無酒精飲品",
+      "200 吋投影 + 音響 + 空調",
+      "含 3 小時場地使用"
+    ],
+    "priceWeekday": 12000,
+    "priceWeekend": 17000,
+    "priceUnit": "起",
+    "leadDays": 3,
+    "suitableFor": "10-40 人",
+    "duration": "3 小時",
+    "includes": ["drink_na"],
+    "allowedAddons": ["venue_extra_hr", "box_meal", "snack_basic", "snack_deluxe", "meal_deluxe"],
+    "faq": [
+      { "q": "會議包場有提供投影設備嗎？", "a": "有的，包含 200 吋投影幕、音響系統與麥克風。" },
+      { "q": "會後可以轉成餐酒會嗎？", "a": "當然可以！可加購餐飲與酒水服務，無縫轉換為社交活動。" }
+    ]
+  },
+  {
+    "id": "custom",
+    "slug": "custom",
+    "name": "客製化方案",
+    "shortName": "訂製專屬方案",
+    "icon": "fas fa-magic",
+    "accentColor": "#a855f7",
+    "coverImage": "/images/gallery-vibe-1.jpg",
+    "galleryImages": [],
+    "tagline": "你的想像力就是唯一的限制",
+    "description": "有特殊需求？無論是展覽、拍攝、品牌活動、市集或任何你想得到的活動 — 我們都能為你量身打造。告訴我們你的需求，讓我們一起創造專屬於你的活動體驗。",
+    "highlights": [
+      "依需求客製場地配置",
+      "專人一對一規劃諮詢",
+      "彈性時間與空間安排",
+      "可整合餐飲、佈置、人員等服務"
+    ],
+    "priceWeekday": 0,
+    "priceWeekend": 0,
+    "priceUnit": "依報價",
+    "leadDays": 14,
+    "suitableFor": "不限",
+    "duration": "依需求",
+    "includes": [],
+    "allowedAddons": [],
+    "faq": [
+      { "q": "客製化方案怎麼報價？", "a": "請透過 LINE 或電話聯繫我們，告知活動類型、預計人數、日期與預算，我們會在 24 小時內提供報價。" },
+      { "q": "有什麼類型的活動都可以租借嗎？", "a": "大部分活動都可以！展覽、拍攝、品牌發表、市集、音樂演出等。唯禁止賭博、毒品等違法活動。" }
+    ]
+  }
+]

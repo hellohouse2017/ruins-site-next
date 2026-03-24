@@ -1,0 +1,290 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-pink: #ff0055;
+  --color-neon-blue: #00f3ff;
+  --color-champagne: #d4af37;
+  --color-ruins-dark: #121212;
+  --color-ruins-card: #1e1e1e;
+  --color-ruins-border: #333;
+  --color-ruins-muted: #7a7a7a;
+  --color-ruins-text: #e0e0e0;
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Noto Sans TC', 'Inter', sans-serif;
+}
+
+/* ══════════════════════════════════════
+   CSS Variables — Dark (default)
+   ══════════════════════════════════════ */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-card: #1e1e1e;
+  --bg-card-hover: #252525;
+  --border-primary: #333;
+  --border-secondary: #444;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-muted: #888;
+  --text-faint: #555;
+  --accent-pink: #ff0055;
+  --accent-blue: #00f3ff;
+  --accent-gold: #d4af37;
+  --nav-bg: rgba(18,18,18,0.95);
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  --hero-filter: grayscale(100%);
+  --hero-opacity: 0.4;
+  --section-alt-bg: #1e1e1e;
+}
+
+/* ══════════════════════════════════════
+   CSS Variables — Light (日系明亮)
+   ══════════════════════════════════════ */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-primary: #faf8f5;
+  --bg-secondary: #f0ebe3;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f9f6f1;
+  --border-primary: #d8cdb8;
+  --border-secondary: #c5b99a;
+  --text-primary: #2c2418;
+  --text-secondary: #4a3f2f;
+  --text-muted: #7a6a4b;
+  --text-faint: #a8987a;
+  --accent-pink: #a33a55;
+  --accent-blue: #3a6a7a;
+  --accent-gold: #866a2a;
+  --nav-bg: rgba(250,248,245,0.95);
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --hero-filter: none;
+  --hero-opacity: 0.85;
+  --section-alt-bg: #f0ebe3;
+}
+
+/* Light mode — softer hover shadows */
+[data-theme="light"] .plan-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+[data-theme="light"] .review-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+[data-theme="light"] .gallery-card:hover {
+  box-shadow: 0 6px 20px rgba(163,58,85,0.12);
+}
+[data-theme="light"] .media-logo {
+  filter: grayscale(0.5) brightness(0.9);
+  opacity: 0.7;
+}
+[data-theme="light"] .media-logo:hover {
+  filter: none;
+  opacity: 1;
+}
+/* Ensure check icons in badge-included are visible */
+[data-theme="light"] .badge-included {
+  background: rgba(16,185,129,0.1);
+  color: #15803d;
+  border-color: rgba(16,185,129,0.25);
+}
+
+/* ══════════════════════════════════════
+   Base
+   ══════════════════════════════════════ */
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  /* Native date/time inputs — ensure proper rendering */
+  input[type="date"],
+  input[type="time"] {
+    min-height: 44px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  body {
+    font-family: var(--font-body);
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    overflow-x: hidden;
+    line-height: 1.7;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  ::selection { background: var(--accent-pink); color: white; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-primary); }
+  ::-webkit-scrollbar-thumb { background: var(--border-primary); border-radius: 3px; }
+}
+
+/* ══════════════════════════════════════
+   Components — Matching live site exactly
+   ══════════════════════════════════════ */
+@layer components {
+  .section-padding {
+    @apply px-4 py-20 md:px-8;
+  }
+
+  /* Plan cards — from live site CSS */
+  .plan-card {
+    transition: all 0.3s;
+  }
+  .plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .plan-card:hover img {
+    transform: scale(1.05);
+  }
+  .plan-card img {
+    transition: transform 0.8s;
+  }
+
+  /* Wedding card glow */
+  .wedding-card:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 30px rgba(212,175,55,0.3);
+  }
+
+  /* Review cards */
+  .review-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  }
+
+  /* Media logos — grayscale to color on hover */
+  .media-logo {
+    filter: grayscale(1) brightness(0.7);
+    opacity: 0.6;
+    transition: all 0.3s;
+  }
+  .media-logo:hover {
+    filter: grayscale(0) brightness(1);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  /* Gallery card hover glow */
+  .gallery-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .gallery-card:hover {
+    box-shadow: 0 8px 30px rgba(255,0,85,0.15);
+  }
+
+  /* Scroll fade-in — from live site */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* FAQ accordion — from live site */
+  .faq-item {
+    border-bottom: 1px solid var(--border-primary);
+  }
+  .faq-question {
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .faq-question:hover {
+    color: var(--accent-blue);
+  }
+
+  /* Sticky LINE button — from live site */
+  .sticky-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #06c755;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    z-index: 40;
+    transition: all 0.3s;
+    text-decoration: none;
+    cursor: pointer;
+    animation: pulse-green 2s infinite;
+  }
+  @keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(6,199,85,0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(6,199,85,0); }
+    100% { box-shadow: 0 0 0 0 rgba(6,199,85,0); }
+  }
+
+  /* Glass card */
+  .glass-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    box-shadow: var(--card-shadow);
+    @apply rounded-2xl overflow-hidden transition-all duration-300;
+  }
+
+  /* Wizard progress */
+  .wizard-step-circle {
+    @apply w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300;
+  }
+  .wizard-step-circle.active {
+    background: var(--accent-pink);
+    @apply text-white;
+    box-shadow: 0 0 16px rgba(255,0,85,0.4);
+  }
+  .wizard-step-circle.completed {
+    @apply bg-emerald-600 text-white;
+  }
+  .wizard-step-circle.inactive {
+    background: var(--border-primary);
+    color: var(--text-muted);
+  }
+  .wizard-connector {
+    @apply flex-1 h-0.5 transition-all duration-300;
+  }
+  .wizard-connector.completed {
+    @apply bg-emerald-600;
+  }
+  .wizard-connector.inactive {
+    background: var(--border-primary);
+  }
+
+  /* Sticky summary bar */
+  .sticky-summary {
+    @apply fixed bottom-0 left-0 right-0 z-50;
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-primary);
+  }
+
+  /* Badge */
+  .badge-included {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    background: rgba(16,185,129,0.15);
+    color: #34d399;
+    border: 1px solid rgba(16,185,129,0.3);
+  }
+
+  /* Scrollbar hide */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}

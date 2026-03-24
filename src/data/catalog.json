@@ -1,0 +1,96 @@
+{
+  "categories": [
+    {
+      "id": "venue",
+      "name": "場地",
+      "icon": "🏛️",
+      "items": [
+        { "id": "venue_3hr", "name": "場地使用 3 小時", "unit": "場", "pricePackage": 0, "priceDirect": 10000, "description": "基本場地使用含空調", "tags": ["base"] },
+        { "id": "venue_extra_hr", "name": "場地加時", "unit": "小時", "pricePackage": 3000, "priceDirect": 5000, "weekendPricePackage": 5000, "weekendPriceDirect": 5000, "description": "延長場地使用時間", "tags": ["addon"], "counterMax": 12 }
+      ]
+    },
+    {
+      "id": "equipment",
+      "name": "設備",
+      "icon": "🎬",
+      "items": [
+        { "id": "projector_200", "name": "200 吋投影幕", "unit": "台", "pricePackage": 0, "priceDirect": 3000, "description": "超大投影幕", "tags": ["base"] },
+        { "id": "sound_system", "name": "音響系統", "unit": "套", "pricePackage": 0, "priceDirect": 2000, "description": "專業音響設備", "tags": ["base"] },
+        { "id": "microphone", "name": "無線麥克風", "unit": "支", "pricePackage": 0, "priceDirect": 500, "description": "無線麥克風", "tags": ["base"] },
+        { "id": "ac", "name": "空調", "unit": "場", "pricePackage": 0, "priceDirect": 0, "description": "室內空調系統", "tags": ["base"] }
+      ]
+    },
+    {
+      "id": "furniture",
+      "name": "桌椅",
+      "icon": "🪑",
+      "items": [
+        { "id": "chair_bamboo_30", "name": "室內竹編椅 30 張", "unit": "組", "pricePackage": 0, "priceDirect": 3000, "description": "標準 30 張竹節椅", "tags": ["base"] },
+        { "id": "chair_bamboo_extra", "name": "加租竹節椅", "unit": "張", "pricePackage": 30, "priceDirect": 50, "description": "場地已含 30 張，額外加租", "tags": ["addon"], "counterMax": 20 },
+        { "id": "table_fold_6", "name": "6 人折疊桌", "unit": "張", "pricePackage": 150, "priceDirect": 300, "description": "六人方桌，適合用餐或工作", "tags": ["addon"], "counterMax": 6 },
+        { "id": "barrel_table", "name": "油桶桌", "unit": "張", "pricePackage": 0, "priceDirect": 500, "description": "工業風油桶高腳桌", "tags": ["included"] },
+        { "id": "toast_chair", "name": "證婚區吐司椅", "unit": "組", "pricePackage": 0, "priceDirect": 5000, "description": "戶外證婚區椅子", "tags": ["included"] }
+      ]
+    },
+    {
+      "id": "food",
+      "name": "餐飲",
+      "icon": "🍽️",
+      "items": [
+        { "id": "snack_basic", "name": "自助式點心盤 (25人份)", "unit": "份", "pricePackage": 1500, "priceDirect": 2500, "description": "基本鹹甜點心組合", "tags": ["addon"] },
+        { "id": "snack_deluxe", "name": "精緻自助點心 (25人份)", "unit": "份", "pricePackage": 15000, "priceDirect": 18000, "description": "精選 10 樣鹹甜點心搭配", "tags": ["addon", "included"] },
+        { "id": "meal_deluxe", "name": "精緻自助正餐 (25人份)", "unit": "份", "pricePackage": 25000, "priceDirect": 30000, "description": "完整正餐自助餐", "tags": ["addon"] },
+        { "id": "upgrade_meal", "name": "點心升級正餐（補差價）", "unit": "式", "pricePackage": 10000, "priceDirect": 10000, "description": "將已含的點心升級為正餐", "tags": ["addon"] },
+        { "id": "box_meal", "name": "西點餐盒", "unit": "盒", "pricePackage": 200, "priceDirect": 250, "description": "精美西點個人餐盒，最少 20 盒起訂", "tags": ["addon"], "counterMax": 200, "minOrder": 20 }
+      ]
+    },
+    {
+      "id": "beverage",
+      "name": "酒水飲品",
+      "icon": "🍸",
+      "items": [
+        { "id": "drink_na", "name": "5L 自助無酒精飲品", "unit": "桶", "pricePackage": 800, "priceDirect": 1200, "description": "無酒精自助飲品桶", "tags": ["addon", "included"] },
+        { "id": "drink_cocktail", "name": "5L 自助雞尾酒調酒", "unit": "桶", "pricePackage": 2000, "priceDirect": 3000, "description": "預調雞尾酒自助桶", "tags": ["addon", "included"] },
+        { "id": "beer_cart", "name": "啤酒推車 (48 罐)", "unit": "台", "pricePackage": 3000, "priceDirect": 4500, "description": "含 48 罐精選啤酒", "tags": ["addon"] },
+        { "id": "bartender_100", "name": "駐場調酒 100 杯 (2hr)", "unit": "場", "pricePackage": 35000, "priceDirect": 40000, "description": "專業調酒師現場調製 100 杯", "tags": ["addon"], "group": "bartender" },
+        { "id": "bartender_150", "name": "駐場調酒 150 杯 (2hr)", "unit": "場", "pricePackage": 40000, "priceDirect": 45000, "description": "專業調酒師現場調製 150 杯", "tags": ["addon"], "group": "bartender" },
+        { "id": "bartender_all", "name": "駐場調酒暢飲 (2.5hr)", "unit": "場", "pricePackage": 68000, "priceDirect": 75000, "description": "專業調酒師無限暢飲", "tags": ["addon"], "group": "bartender" }
+      ]
+    },
+    {
+      "id": "decoration",
+      "name": "佈置裝飾",
+      "icon": "🎨",
+      "items": [
+        { "id": "balloon_basic", "name": "溫馨氣球 + 拍照背板", "unit": "組", "pricePackage": 0, "priceDirect": 8000, "description": "標準氣球佈置含拍照背板", "tags": ["included"] },
+        { "id": "merry_me_light", "name": "MerryMe 燈條佈置", "unit": "組", "pricePackage": 0, "priceDirect": 5000, "description": "浪漫求婚燈條", "tags": ["included"] },
+        { "id": "proposal_bouquet", "name": "求婚花束（乾燥/鮮花）", "unit": "束", "pricePackage": 0, "priceDirect": 3000, "description": "乾燥花或鮮花求婚花束", "tags": ["included"] },
+        { "id": "baby_props", "name": "抓周道具 / 性別氣球", "unit": "組", "pricePackage": 0, "priceDirect": 3000, "description": "抓周道具組或性別揭曉氣球", "tags": ["included"] },
+        { "id": "outdoor_lights", "name": "戶外燈串", "unit": "組", "pricePackage": 0, "priceDirect": 3000, "description": "戶外區域燈串裝飾", "tags": ["included"] },
+        { "id": "wedding_arch", "name": "戶外證婚區 + 拱門 + 走道", "unit": "式", "pricePackage": 0, "priceDirect": 20000, "description": "證婚拱門與走道佈置", "tags": ["included"] },
+        { "id": "decor_table", "name": "取餐區餐桌佈置", "unit": "式", "pricePackage": 5000, "priceDirect": 8000, "description": "美化取餐區域，含桌布花藝", "tags": ["addon"] },
+        { "id": "backdrop_name", "name": "客製化姓名背板", "unit": "面", "pricePackage": 3000, "priceDirect": 5000, "description": "印有姓名的主題拍照背板", "tags": ["addon"] },
+        { "id": "lights_name", "name": "新人專屬英文名燈條", "unit": "組", "pricePackage": 4000, "priceDirect": 6000, "description": "LED 燈條拼出英文名字", "tags": ["addon"] },
+        { "id": "backdrop_flower", "name": "升級鮮花主題背板", "unit": "面", "pricePackage": 15000, "priceDirect": 20000, "description": "以鮮花打造的主題拍照背板", "tags": ["addon"] },
+        { "id": "wedding_flower", "name": "證婚區升級鮮花佈置", "unit": "式", "pricePackage": 30000, "priceDirect": 40000, "description": "證婚拱門與走道鮮花裝飾", "tags": ["addon"] }
+      ]
+    },
+    {
+      "id": "entertainment",
+      "name": "娛樂表演",
+      "icon": "🎵",
+      "items": [
+        { "id": "dj_2hr", "name": "DJ 現場演出", "unit": "場 (2hr)", "pricePackage": 0, "priceDirect": 8000, "description": "DJ 現場演出 2 小時", "tags": ["included"] },
+        { "id": "singer", "name": "升級駐唱歌手 (2HR)", "unit": "場", "pricePackage": 1000, "priceDirect": 3000, "description": "現場歌手演唱，營造浪漫氛圍", "tags": ["addon"] }
+      ]
+    },
+    {
+      "id": "staff",
+      "name": "人員服務",
+      "icon": "👨‍🎤",
+      "items": [
+        { "id": "host", "name": "儀式主持人", "unit": "場", "pricePackage": 6000, "priceDirect": 8000, "description": "專業主持人帶動活動流程", "tags": ["addon"] }
+      ]
+    }
+  ]
+}

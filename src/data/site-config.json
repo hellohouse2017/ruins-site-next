@@ -1,0 +1,61 @@
+{
+  "brand": {
+    "name": "RUINS BAR",
+    "nameCN": "廢墟",
+    "tagline": "高雄鹽埕 × 廢墟美學 × 極致派對體驗",
+    "description": "高雄鹽埕區最有個性的工業風活動場地，提供求婚、婚禮、派對、抓周、會議等包場服務。",
+    "year": 2025
+  },
+  "contact": {
+    "phone": "0932-828-922",
+    "phoneRaw": "0932828922",
+    "lineId": "@529ldsir",
+    "lineUrl": "https://line.me/R/ti/p/@529ldsir",
+    "instagram": "https://www.instagram.com/ruins_yencheng/",
+    "instagramHandle": "@ruins_yencheng",
+    "googleMapsUrl": "https://www.google.com/maps/dir//高雄市鹽埕區瀨南街205號",
+    "googleReviewUrl": "https://www.google.com/search?q=廢墟Ruins+評論"
+  },
+  "location": {
+    "address": "高雄市鹽埕區瀨南街205號",
+    "city": "高雄市",
+    "district": "鹽埕區",
+    "postalCode": "803",
+    "lat": 22.6244,
+    "lng": 120.2793
+  },
+  "seo": {
+    "siteUrl": "https://ruins-bar.com",
+    "defaultTitle": "RUINS BAR 廢墟 | 高雄鹽埕活動場地租借 · 求婚 · 婚禮 · 派對包場",
+    "defaultDescription": "高雄鹽埕最有個性的工業風派對場地 RUINS BAR 廢墟。提供求婚包場、輕婚禮、抓周、生日派對、會議包場等服務。專業佈置、精緻餐飲、LINE 即時預約。",
+    "keywords": ["高雄場地租借", "高雄派對場地", "高雄求婚場地", "高雄婚禮場地", "高雄包場", "鹽埕區酒吧", "廢墟風場地", "高雄抓周", "高雄慶生包場", "高雄會議場地"],
+    "ogImage": "/images/cover-bg.jpg"
+  },
+  "api": {
+    "gasUrl": "https://script.google.com/macros/s/AKfycbyiyxa6_OwdrWp_YQVkJ622DQgN23jHWTdCdt-lj0LBQ1Lm_pV2RWkvFQMigMpcg59NHQ/exec",
+    "liffId": "2008702134-FRWP0LWx"
+  },
+  "reviews": [
+    {
+      "text": "在高雄找了很久，終於找到這麼有氛圍的抓周場地！廢墟風拍照起來意外的溫馨，主持人也很會帶氣氛，長輩們都稱讚不已。",
+      "author": "林小姐",
+      "plan": "抓周派對",
+      "rating": 5
+    },
+    {
+      "text": "原本擔心求婚會很尷尬，但團隊佈置的燈光真的很美！方案包含的平面攝影也很專業，完美捕捉了女友感動的瞬間，大推！",
+      "author": "張先生",
+      "plan": "求婚方案",
+      "rating": 5
+    },
+    {
+      "text": "這次公司舉辦的會議講座選在這裡，大家都很喜歡這裡的輕鬆氛圍。包場的隱私性很好，投影設備和音響都很棒。會後直接轉成餐酒會！",
+      "author": "創意設計公司",
+      "plan": "會議包場",
+      "rating": 5
+    }
+  ],
+  "socialProof": {
+    "hashtags": ["#高雄場地租借", "#鹽埕區酒吧", "#廢墟風攝影棚", "#求婚場地", "#抓周派對", "#小型婚禮"]
+  }
+}

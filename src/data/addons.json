@@ -1,0 +1,67 @@
+{
+  "categories": [
+    {
+      "id": "time",
+      "name": "時間",
+      "icon": "🕐",
+      "items": [
+        { "id": "venue_extra_hr", "name": "場地加時", "unit": "小時", "priceWeekday": 3000, "priceWeekend": 5000, "type": "counter", "max": 12, "minOrder": 0, "description": "延長場地使用時間，每小時計費" }
+      ]
+    },
+    {
+      "id": "equipment",
+      "name": "設備",
+      "icon": "🪑",
+      "items": [
+        { "id": "table_fold_6", "name": "6 人折疊桌", "unit": "張", "priceWeekday": 150, "priceWeekend": 150, "type": "counter", "max": 6, "minOrder": 0, "description": "六人方桌，適合用餐或工作" },
+        { "id": "chair_bamboo_extra", "name": "加租竹節椅", "unit": "張", "priceWeekday": 30, "priceWeekend": 30, "type": "counter", "max": 20, "minOrder": 0, "description": "精緻竹節椅（場地已含 30 張）" }
+      ]
+    },
+    {
+      "id": "food",
+      "name": "餐飲",
+      "icon": "🍽️",
+      "items": [
+        { "id": "snack_basic", "name": "自助式點心盤 (25 人份)", "unit": "份", "priceWeekday": 1500, "priceWeekend": 1500, "type": "toggle", "description": "基本鹹甜點心組合" },
+        { "id": "snack_deluxe", "name": "精緻自助點心 (25 人份)", "unit": "份", "priceWeekday": 15000, "priceWeekend": 15000, "type": "toggle", "description": "精選 10 樣鹹甜點心搭配" },
+        { "id": "meal_deluxe", "name": "精緻自助正餐 (25 人份)", "unit": "份", "priceWeekday": 25000, "priceWeekend": 25000, "type": "toggle", "description": "完整正餐自助餐" },
+        { "id": "upgrade_meal", "name": "點心升級正餐（補差價）", "unit": "式", "priceWeekday": 10000, "priceWeekend": 10000, "type": "toggle", "description": "將已含的點心升級為正餐" },
+        { "id": "box_meal", "name": "西點餐盒", "unit": "盒", "priceWeekday": 200, "priceWeekend": 200, "type": "counter", "max": 200, "minOrder": 20, "description": "精美西點個人餐盒，最少 20 盒起訂" }
+      ]
+    },
+    {
+      "id": "beverage",
+      "name": "酒水",
+      "icon": "🍸",
+      "items": [
+        { "id": "drink_na", "name": "5L 自助無酒精飲品", "unit": "桶", "priceWeekday": 800, "priceWeekend": 800, "type": "toggle", "description": "無酒精自助飲品桶" },
+        { "id": "drink_cocktail", "name": "5L 自助雞尾酒調酒", "unit": "桶", "priceWeekday": 2000, "priceWeekend": 2000, "type": "toggle", "description": "預調雞尾酒自助桶" },
+        { "id": "beer_cart", "name": "啤酒推車 (48 罐)", "unit": "台", "priceWeekday": 3000, "priceWeekend": 3000, "type": "toggle", "description": "含 48 罐精選啤酒" },
+        { "id": "bartender_100", "name": "駐場調酒 100 杯 (2hr)", "unit": "場", "priceWeekday": 35000, "priceWeekend": 35000, "type": "toggle", "group": "bartender", "description": "專業調酒師現場調製 100 杯" },
+        { "id": "bartender_150", "name": "駐場調酒 150 杯 (2hr)", "unit": "場", "priceWeekday": 40000, "priceWeekend": 40000, "type": "toggle", "group": "bartender", "description": "專業調酒師現場調製 150 杯" },
+        { "id": "bartender_all", "name": "駐場調酒暢飲 (2.5hr)", "unit": "場", "priceWeekday": 68000, "priceWeekend": 68000, "type": "toggle", "group": "bartender", "description": "專業調酒師無限暢飲" }
+      ]
+    },
+    {
+      "id": "decoration",
+      "name": "佈置",
+      "icon": "🎨",
+      "items": [
+        { "id": "decor_table", "name": "取餐區餐桌佈置", "unit": "式", "priceWeekday": 5000, "priceWeekend": 5000, "type": "toggle", "description": "美化取餐區域，含桌布花藝" },
+        { "id": "backdrop_name", "name": "客製化姓名背板", "unit": "面", "priceWeekday": 3000, "priceWeekend": 3000, "type": "toggle", "description": "印有姓名的主題拍照背板" },
+        { "id": "lights_name", "name": "新人專屬英文名燈條", "unit": "組", "priceWeekday": 4000, "priceWeekend": 4000, "type": "toggle", "description": "LED 燈條拼出英文名字" },
+        { "id": "backdrop_flower", "name": "升級鮮花主題背板", "unit": "面", "priceWeekday": 15000, "priceWeekend": 15000, "type": "toggle", "description": "以鮮花打造的主題拍照背板" },
+        { "id": "wedding_flower", "name": "證婚區升級鮮花佈置", "unit": "式", "priceWeekday": 30000, "priceWeekend": 30000, "type": "toggle", "description": "證婚拱門與走道鮮花裝飾" }
+      ]
+    },
+    {
+      "id": "staff",
+      "name": "人員",
+      "icon": "👨‍🎤",
+      "items": [
+        { "id": "host", "name": "儀式主持人", "unit": "場", "priceWeekday": 6000, "priceWeekend": 6000, "type": "toggle", "description": "專業主持人帶動活動流程" },
+        { "id": "singer", "name": "升級駐唱歌手 (2HR)", "unit": "場", "priceWeekday": 1000, "priceWeekend": 1000, "type": "toggle", "description": "現場歌手演唱，營造浪漫氛圍" }
+      ]
+    }
+  ]
+}
