@@ -31,8 +31,8 @@ export async function handleLineEvent(event: WebhookEvent): Promise<Message[]> {
   const userMessage = event.message.text;
   const userId = event.source.userId || "anonymous";
 
-  // Load session
-  const session = getSession(userId);
+  // Load session from MongoDB
+  const session = await getSession(userId);
 
   // Get AI response
   const aiResponse = await chatWithAI(session, userMessage);
@@ -156,8 +156,8 @@ export async function handleLineEvent(event: WebhookEvent): Promise<Message[]> {
     messages.push({ type: "text", text: "收到！讓我想想... 🤔" } as Message);
   }
 
-  // Save session
-  saveSession(session);
+  // Save session to MongoDB
+  await saveSession(session);
 
   return messages;
 }

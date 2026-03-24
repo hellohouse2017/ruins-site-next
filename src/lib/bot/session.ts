@@ -1,12 +1,30 @@
 /**
- * Ruins Bar LINE Bot — Session Store
- * File-based session storage (can migrate to MongoDB later)
+ * Ruins Bar LINE Bot — MongoDB Session Store
+ * Persistent chat history + session state across serverless invocations
  */
 
-import fs from "fs";
-import path from "path";
+import { MongoClient, type Db, type Collection } from "mongodb";
 
-const SESSION_DIR = path.join("/tmp", "ruins-sessions");
+const MONGODB_URI = process.env.MONGODB_URI || "";
+const DB_NAME = "ruins_bot";
+
+// Connection pool (reused across invocations in warm containers)
+let cachedClient: MongoClient | null = null;
+let cachedDb: Db | null = null;
+
+async function getDb(): Promise<Db> {
+  if (cachedDb) return cachedDb;
+
+  if (!MONGODB_URI) {
+    throw new Error("MONGODB_URI is not set");
+  }
+
+  const client = new MongoClient(MONGODB_URI);
+  await client.connect();
+  cachedClient = client;
+  cachedDb = client.db(DB_NAME);
+  return cachedDb;
+}
 
 export interface SessionSlots {
   eventType?: string;     // 求婚 | 派對 | 婚禮 | 抓周 | 會議 | 場租 | 其他
@@ -33,26 +51,21 @@ export interface Session {
   updatedAt: number;
 }
 
-function ensureDir() {
-  if (!fs.existsSync(SESSION_DIR)) {
-    fs.mkdirSync(SESSION_DIR, { recursive: true });
-  }
+async function getCollection(): Promise<Collection<Session>> {
+  const db = await getDb();
+  return db.collection<Session>("sessions");
 }
 
-function sessionPath(userId: string): string {
-  return path.join(SESSION_DIR, `${userId}.json`);
-}
-
-export function getSession(userId: string): Session {
-  ensureDir();
-  const fp = sessionPath(userId);
-  if (fs.existsSync(fp)) {
-    try {
-      return JSON.parse(fs.readFileSync(fp, "utf-8"));
-    } catch {
-      // corrupted file, reset
-    }
+export async function getSession(userId: string): Promise<Session> {
+  try {
+    const col = await getCollection();
+    const session = await col.findOne({ userId });
+    if (session) return session;
+  } catch (err) {
+    console.error("[Session] MongoDB read error:", err);
   }
+
+  // Return new session
   return {
     userId,
     state: "idle",
@@ -63,10 +76,18 @@ export function getSession(userId: string): Session {
   };
 }
 
-export function saveSession(session: Session): void {
-  ensureDir();
-  session.updatedAt = Date.now();
-  fs.writeFileSync(sessionPath(session.userId), JSON.stringify(session, null, 2), "utf-8");
+export async function saveSession(session: Session): Promise<void> {
+  try {
+    session.updatedAt = Date.now();
+    const col = await getCollection();
+    await col.updateOne(
+      { userId: session.userId },
+      { $set: session },
+      { upsert: true }
+    );
+  } catch (err) {
+    console.error("[Session] MongoDB write error:", err);
+  }
 }
 
 export function addMessage(session: Session, role: "user" | "assistant", content: string): void {
