@@ -65,14 +65,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ status: "ok" });
     }
 
-    // 2. Fire-and-forget: process in background
+    // 2. Process events (must await on serverless — process dies after response)
     const client = getClient();
-    Promise.allSettled(
+    await Promise.allSettled(
       events.map(async (event) => {
         try {
+          console.log("[Webhook] Processing event:", event.type);
           const messages = await handleLineEvent(event);
+          console.log("[Webhook] Got messages:", messages.length);
           if (messages.length > 0 && "replyToken" in event && event.replyToken) {
             await client.replyMessage(event.replyToken, messages);
+            console.log("[Webhook] Reply sent successfully");
           }
         } catch (err) {
           console.error("[Webhook] Event processing error:", err);
@@ -87,9 +90,9 @@ export async function POST(request: NextRequest) {
           }
         }
       })
-    ).catch((err) => console.error("[Webhook] Background error:", err));
+    );
 
-    // 3. Return 200 OK immediately
+    // 3. Return 200 OK
     return NextResponse.json({ status: "ok" });
   } catch (err) {
     console.error("[Webhook] Request error:", err);
