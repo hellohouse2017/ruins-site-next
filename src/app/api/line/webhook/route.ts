@@ -10,14 +10,13 @@ import crypto from "crypto";
 import { Client, type WebhookEvent } from "@line/bot-sdk";
 import { handleLineEvent } from "@/lib/bot/orchestrator";
 
-const channelAccessToken = process.env.LINE_CHANNEL_ACCESS_TOKEN || "";
-const channelSecret = process.env.LINE_CHANNEL_SECRET || "";
-
-// Lazy-init LINE client
+// Lazy-init LINE client (must read env at runtime, not build time)
 let lineClient: Client | null = null;
 function getClient(): Client {
   if (!lineClient) {
-    lineClient = new Client({ channelAccessToken });
+    lineClient = new Client({
+      channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN || "",
+    });
   }
   return lineClient;
 }
@@ -29,13 +28,23 @@ export async function GET() {
 
 // LINE webhook handler (POST)
 export async function POST(request: NextRequest) {
+  // Read env vars at RUNTIME (not module-level, which gets baked at build time)
+  const channelSecret = process.env.LINE_CHANNEL_SECRET || "";
+
   try {
     const bodyText = await request.text();
 
     // 1. Verify signature
     const signature = request.headers.get("x-line-signature");
-    if (!signature || !channelSecret) {
-      return NextResponse.json({ error: "Missing signature or secret" }, { status: 401 });
+
+    if (!channelSecret) {
+      console.error("[Webhook] LINE_CHANNEL_SECRET is not set!");
+      return NextResponse.json({ status: "ok" }); // Return 200 anyway for LINE
+    }
+
+    if (!signature) {
+      console.error("[Webhook] Missing x-line-signature header");
+      return NextResponse.json({ error: "Missing signature" }, { status: 401 });
     }
 
     const hash = crypto
@@ -44,6 +53,7 @@ export async function POST(request: NextRequest) {
       .digest("base64");
 
     if (hash !== signature) {
+      console.error("[Webhook] Signature mismatch");
       return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
     }
 
@@ -51,7 +61,7 @@ export async function POST(request: NextRequest) {
     const events: WebhookEvent[] = body.events;
 
     if (!events || events.length === 0) {
-      // LINE verifying webhook URL
+      // LINE verifying webhook URL — return 200
       return NextResponse.json({ status: "ok" });
     }
 
@@ -66,7 +76,6 @@ export async function POST(request: NextRequest) {
           }
         } catch (err) {
           console.error("[Webhook] Event processing error:", err);
-          // Try to send error message
           if ("replyToken" in event && event.replyToken) {
             try {
               await client.replyMessage(event.replyToken, [
@@ -87,3 +96,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ status: "ok" }); // Always return 200 to LINE
   }
 }
+
