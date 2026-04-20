@@ -1,12 +1,20 @@
 {
   "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "ruins.hello-stay.com" }],
+      "destination": "https://ruins-bar.com/$1",
+      "permanent": true
+    },
     { "source": "/zh", "destination": "/", "permanent": true },
     { "source": "/en", "destination": "/", "permanent": true },
     { "source": "/ja", "destination": "/", "permanent": true },
     { "source": "/ko", "destination": "/", "permanent": true },
+    { "source": "/vi", "destination": "/", "permanent": true },
     { "source": "/zh/:path*", "destination": "/:path*", "permanent": true },
     { "source": "/en/:path*", "destination": "/:path*", "permanent": true },
     { "source": "/ja/:path*", "destination": "/:path*", "permanent": true },
-    { "source": "/ko/:path*", "destination": "/:path*", "permanent": true }
+    { "source": "/ko/:path*", "destination": "/:path*", "permanent": true },
+    { "source": "/vi/:path*", "destination": "/:path*", "permanent": true }
   ]
 }
