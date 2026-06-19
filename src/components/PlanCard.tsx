@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getLegacyPlanBookingHref } from "@/lib/v2/navigation";
 
 interface Plan {
   id: string;
@@ -22,7 +23,7 @@ interface Plan {
 export function PlanCard({ plan }: { plan: Plan }) {
   return (
     <Link
-      href={`/book?plan=${plan.id}`}
+      href={getLegacyPlanBookingHref(plan.slug)}
       className="group block rounded-2xl overflow-hidden border transition-all duration-300 hover:-translate-y-1"
       style={{
         backgroundColor: "var(--bg-card)",

@@ -16,9 +16,12 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { href: "/#plans", label: "方案預約", icon: "fas fa-calendar-check", highlight: true },
-    { href: "/#gallery", label: "實錄", icon: "", highlight: false },
-    { href: "/#reviews", label: "好評", icon: "", highlight: false },
+    { href: "/", label: "首頁" },
+    { href: "/gallery", label: "場地照片" },
+    { href: "/insights", label: "活動攻略" },
+    { href: "/faq", label: "常見問題" },
+    { href: "/location", label: "交通停車" },
+    { href: "/book", label: "詢問檔期" },
   ];
 
   return (
@@ -41,35 +44,37 @@ export function Navbar() {
               className="text-2xl font-bold tracking-wider"
               style={{ fontFamily: "var(--font-display)", color: "var(--text-primary)" }}
             >
-              RUINS{" "}
-              <span style={{ color: "var(--accent-pink)" }}>BAR</span>
+              RUINS <span style={{ color: "var(--accent-pink)" }}>BAR</span>
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-baseline space-x-6">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((l) =>
-              l.highlight ? (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="transition px-3 py-2 rounded-md text-sm font-bold border"
-                  style={{ color: "var(--accent-blue)", borderColor: "var(--accent-blue)" }}
-                >
-                  {l.icon && <i className={`${l.icon} mr-1`} />}
-                  {l.label}
-                </Link>
-              ) : (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="px-3 py-2 rounded-md text-sm font-medium transition-colors hover:opacity-80"
-                  style={{ color: "var(--text-muted)" }}
-                >
-                  {l.label}
-                </Link>
-              )
+              <Link
+                key={l.href}
+                href={l.href}
+                className="px-2 py-2 rounded-md text-sm font-medium transition-colors hover:opacity-80"
+                style={{ color: "var(--text-muted)" }}
+              >
+                {l.label}
+              </Link>
             )}
+            <Link
+              href={siteConfig.contact.lineUrl}
+              target="_blank"
+              rel="noopener"
+              className="px-4 py-2 rounded-full text-sm font-bold transition"
+              style={{
+                backgroundColor: "var(--accent-pink)",
+                color: "#fff",
+                boxShadow: theme === "dark"
+                  ? "0 0 16px rgba(255,0,85,0.35)"
+                  : "0 4px 16px rgba(196,82,106,0.25)",
+              }}
+            >
+              LINE 詢問檔期
+            </Link>
           </div>
 
           {/* Mobile hamburger */}
@@ -100,12 +105,8 @@ export function Navbar() {
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
                 className="text-base py-2"
-                style={{
-                  color: l.highlight ? "var(--accent-blue)" : "var(--text-secondary)",
-                  fontWeight: l.highlight ? "bold" : "normal",
-                }}
+                style={{ color: "var(--text-secondary)" }}
               >
-                {l.icon && <i className={`${l.icon} mr-2`} />}
                 {l.label}
               </Link>
             ))}
@@ -113,9 +114,10 @@ export function Navbar() {
               href={siteConfig.contact.lineUrl}
               target="_blank"
               rel="noopener"
-              className="flex items-center gap-2 text-base text-green-500 py-2"
+              className="flex items-center gap-2 text-base py-2 font-bold"
+              style={{ color: "var(--accent-pink)" }}
             >
-              <i className="fab fa-line" /> LINE 聯繫
+              <i className="fab fa-line" /> LINE 詢問檔期
             </a>
           </div>
         </div>

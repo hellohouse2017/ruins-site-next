@@ -9,7 +9,7 @@ export function StickyLineButton() {
       target="_blank"
       rel="noopener"
       className="sticky-btn"
-      aria-label="LINE 聯繫"
+      aria-label="LINE 詢問檔期"
     >
       <i className="fab fa-line" />
     </a>

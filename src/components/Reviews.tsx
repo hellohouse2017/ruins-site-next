@@ -9,7 +9,7 @@ export function Reviews() {
     >
       <div className="max-w-7xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold mb-8" style={{ color: "var(--text-primary)" }}>
-          五星好評見證
+          客人常提到什麼
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">

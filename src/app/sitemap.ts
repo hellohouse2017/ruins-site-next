@@ -1,13 +1,10 @@
 import { MetadataRoute } from "next";
-import plans from "@/data/plans.json";
 import siteConfig from "@/data/site-config.json";
+import { legacyPlanSlugs } from "@/lib/v2/navigation";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = siteConfig.seo.siteUrl; // https://ruins-bar.com
-    const updated = "2026-03-24";
-
-    // Deduplicate plan slugs (some plans share same slug e.g. wedding)
-    const planSlugs = [...new Set(plans.map((p) => p.slug))];
+    const updated = "2026-06-20";
 
     return [
         {
@@ -22,8 +19,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "daily",
             priority: 0.9,
         },
-        // 各方案頁
-        ...planSlugs.map((slug) => ({
+        {
+            url: `${baseUrl}/gallery`,
+            lastModified: updated,
+            changeFrequency: "weekly",
+            priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/faq`,
+            lastModified: updated,
+            changeFrequency: "weekly",
+            priority: 0.7,
+        },
+        {
+            url: `${baseUrl}/location`,
+            lastModified: updated,
+            changeFrequency: "weekly",
+            priority: 0.7,
+        },
+        {
+            url: `${baseUrl}/insights`,
+            lastModified: updated,
+            changeFrequency: "weekly",
+            priority: 0.8,
+        },
+        // 舊方案頁目前作為 v2 導流入口保留
+        ...legacyPlanSlugs.map((slug) => ({
             url: `${baseUrl}/plans/${slug}`,
             lastModified: updated,
             changeFrequency: "weekly" as const,

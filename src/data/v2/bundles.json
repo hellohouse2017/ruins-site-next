@@ -1,0 +1,91 @@
+{
+  "bundles": [
+    {
+      "id": "proposal_light",
+      "name": "求婚輕量組",
+      "scenarioId": "proposal",
+      "badge": "入門首選",
+      "summary": "小型驚喜求婚，快速成型",
+      "items": [
+        { "addonId": "flower_bouquet", "qty": 1 },
+        { "addonId": "merryme_lights_rent", "qty": 1 },
+        { "addonId": "photo_backdrop_standard", "qty": 1 }
+      ],
+      "listPrice": 10499,
+      "bundlePrice": 9999,
+      "savings": 500,
+      "active": true,
+      "sortOrder": 10
+    },
+    {
+      "id": "proposal_popular",
+      "name": "求婚熱門組",
+      "scenarioId": "proposal",
+      "badge": "最多人選",
+      "summary": "最容易出片的熱門求婚組合",
+      "items": [
+        { "addonId": "flower_bouquet", "qty": 1 },
+        { "addonId": "merryme_lights_custom", "qty": 1 },
+        { "addonId": "photo_backdrop_standard", "qty": 1 },
+        { "addonId": "balloon_set", "qty": 1 }
+      ],
+      "listPrice": 21499,
+      "bundlePrice": 20999,
+      "savings": 500,
+      "active": true,
+      "sortOrder": 20
+    },
+    {
+      "id": "wedding_elegant",
+      "name": "證婚典雅組",
+      "scenarioId": "wedding",
+      "badge": "典雅風格",
+      "summary": "證婚入門首選，兼顧畫面與流程",
+      "items": [
+        { "addonId": "backdrop_flower", "qty": 1 },
+        { "addonId": "host", "qty": 1 },
+        { "addonId": "photographer_2hr", "qty": 1 }
+      ],
+      "listPrice": 39800,
+      "bundlePrice": 38800,
+      "savings": 1000,
+      "active": true,
+      "sortOrder": 10
+    },
+    {
+      "id": "wedding_complete",
+      "name": "證婚完整組",
+      "scenarioId": "wedding",
+      "badge": "完整體驗",
+      "summary": "儀式感最完整的證婚花藝組合",
+      "items": [
+        { "addonId": "wedding_flower", "qty": 1 },
+        { "addonId": "host", "qty": 1 },
+        { "addonId": "photographer_2hr", "qty": 1 }
+      ],
+      "listPrice": 55800,
+      "bundlePrice": 53800,
+      "savings": 2000,
+      "active": true,
+      "sortOrder": 20
+    },
+    {
+      "id": "family_photo",
+      "name": "家庭拍照組",
+      "scenarioId": "family",
+      "badge": "家庭熱門",
+      "summary": "抓周與家庭慶典拍照最完整",
+      "items": [
+        { "addonId": "photo_backdrop_standard", "qty": 1 },
+        { "addonId": "balloon_set", "qty": 1 },
+        { "addonId": "zhuazhou_kit_rent", "qty": 1 },
+        { "addonId": "photographer_2hr", "qty": 1 }
+      ],
+      "listPrice": 22500,
+      "bundlePrice": 21800,
+      "savings": 700,
+      "active": true,
+      "sortOrder": 10
+    }
+  ]
+}

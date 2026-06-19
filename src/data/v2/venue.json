@@ -1,0 +1,21 @@
+{
+  "id": "main",
+  "name": "RUINS 廢墟主場",
+  "baseDurationHours": 3,
+  "baseIncludes": [
+    "200 吋投影",
+    "音響",
+    "空調",
+    "室內竹節椅 30 張"
+  ],
+  "weekdayPrice": 10000,
+  "weekendPrice": 15000,
+  "weekdayExtraHourPrice": 3000,
+  "weekendExtraHourPrice": 5000,
+  "maxExtraHours": 12,
+  "leadDays": 2,
+  "capacity": {
+    "min": 5,
+    "max": 80
+  }
+}

@@ -34,10 +34,12 @@ export async function GET(req: NextRequest) {
   }
 
   if (!GOOGLE_CLIENT_EMAIL || !GOOGLE_PRIVATE_KEY) {
-    return NextResponse.json(
-      { status: "error", message: "Missing Google credentials env vars" },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      status: "success",
+      events: [],
+      source: "calendar_unconfigured",
+      message: "Google Calendar credentials are not configured.",
+    });
   }
 
   const [year, mon] = month.split("-").map(Number);
@@ -89,8 +91,13 @@ export async function GET(req: NextRequest) {
   } catch (err) {
     console.error("Calendar API error:", err);
     return NextResponse.json(
-      { status: "error", message: "Failed to query calendar" },
-      { status: 500 }
+      {
+        status: "success",
+        events: [],
+        source: "calendar_unavailable",
+        message: "Failed to query calendar",
+      },
+      { status: 200 }
     );
   }
 }

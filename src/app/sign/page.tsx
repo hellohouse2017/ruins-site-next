@@ -390,19 +390,17 @@ export default function SignPage() {
             <h3 className="font-bold text-base mb-2 pl-2" style={{ borderLeft: "4px solid #c5a47e", color: "#1a1a1a" }}>第三條：費用與付款方式</h3>
             <div className="space-y-4 mb-4">
               <div><label style={labelStyle}>場地租金總額</label><input type="number" value={feeRent} onChange={(e) => setFeeRent(e.target.value)} placeholder="總金額" style={inputStyle} /></div>
-              <div><label style={labelStyle}>場地預約訂金 (固定)</label><input value="5000" readOnly style={readonlyInput} /></div>
-              <div><label style={labelStyle}>專案預付款</label><input value={feePrepayment} readOnly placeholder="系統判斷" style={{ ...readonlyInput, backgroundColor: "#fff3cd" }} /></div>
+              <div><label style={labelStyle}>場地預收金額 (依方案)</label><input value={feePrepayment || "系統判斷"} readOnly placeholder="系統判斷" style={{ ...readonlyInput, backgroundColor: "#fff3cd" }} /></div>
+              <div><label style={labelStyle}>付款備註</label><input value="完成預收後保留檔期" readOnly style={readonlyInput} /></div>
               <div><label style={labelStyle}>場地保證金 (固定)</label><input value="3000" readOnly style={readonlyInput} /></div>
             </div>
 
             <h3 className="font-bold text-base mb-2 pl-2" style={{ borderLeft: "4px solid #c5a47e", color: "#1a1a1a" }}>第四條：取消與變更政策</h3>
-            <p className="mb-1 font-bold" style={{ color: "#a94442" }}>※ 場地訂金一經支付概不退還，但可保留一年內延期折抵。</p>
+            <p className="mb-1 font-bold" style={{ color: "#a94442" }}>※ 預收與取消方式以訂房確認紀錄為準，若需變更請先聯繫確認。</p>
             <ul className="list-disc pl-5 mb-4 space-y-1">
-              <li>活動日 31 天前：退還專案預付款 100%</li>
-              <li>15-30 天前：退 50%</li>
-              <li>7-14 天前：退 30%</li>
-              <li><strong style={{ color: "#a94442" }}>7 天內取消：全額不退</strong></li>
-              <li>天災不可抗力：協議延期或全額退費</li>
+              <li>如需取消或延期，請先確認當時可否重新安排檔期。</li>
+              <li>若活動內容、日期或人數有變動，請先通知以便重新確認。</li>
+              <li>天災或不可抗力事件，依雙方確認紀錄協調延期或退款。</li>
             </ul>
 
             <h3 className="font-bold text-base mb-2 pl-2" style={{ borderLeft: "4px solid #c5a47e", color: "#1a1a1a" }}>第五條：場地使用規範</h3>

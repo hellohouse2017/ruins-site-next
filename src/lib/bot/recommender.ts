@@ -1,160 +1,269 @@
 /**
  * Ruins Bar LINE Bot — Smart Recommender
- * Reads plans.json + catalog.json to recommend plans and addons
+ * Uses v2 scenario / bundle / addon sources instead of legacy plans/catalog JSON.
  */
 
-import fs from "fs";
-import path from "path";
+import { listActiveAddons, listPopularAddons } from "@/lib/addons/repository";
+import { v2ScenarioConfigs, v2VenueConfig } from "@/lib/booking/config";
+import { quoteBooking } from "@/lib/booking/pricing";
+import { listActiveBundles, resolveBundleItems } from "@/lib/bundles/repository";
+import { getLegacyPlanBookingHref } from "@/lib/v2/navigation";
+import { getScenarioPresentation } from "@/lib/v2/presentation";
 import type { SessionSlots } from "./session";
+import type { QuoteAddonSelection, ScenarioId } from "@/types/v2";
 
 interface Plan {
-  id: string; name: string; shortName: string; icon: string; accentColor: string;
-  coverImage: string; tagline: string; description: string; highlights: string[];
-  priceWeekday: number; priceWeekend: number; priceUnit: string;
-  suitableFor: string; duration: string; includes: string[];
-  allowedAddons: string[]; slug: string;
+  id: string;
+  name: string;
+  shortName: string;
+  icon: string;
+  accentColor: string;
+  coverImage: string;
+  tagline: string;
+  description: string;
+  highlights: string[];
+  priceWeekday: number;
+  priceWeekend: number;
+  priceUnit: string;
+  suitableFor: string;
+  duration: string;
+  includes: string[];
+  allowedAddons: string[];
+  slug: string;
 }
 
-interface CatalogItem {
-  id: string; name: string; unit: string;
-  pricePackage: number; priceDirect: number;
-  description: string; tags: string[];
+interface RecommendationOption extends Plan {
+  scenarioId: ScenarioId;
+  bundleId?: string;
 }
 
-interface CatalogCategory { id: string; name: string; icon: string; items: CatalogItem[]; }
+const WEEKDAY_SAMPLE = "2026-05-27";
+const WEEKEND_SAMPLE = "2026-05-30";
 
-function loadPlans(): Plan[] {
-  const fp = path.join(process.cwd(), "src/data/plans.json");
-  return JSON.parse(fs.readFileSync(fp, "utf-8"));
-}
-
-function loadCatalog(): { categories: CatalogCategory[] } {
-  const fp = path.join(process.cwd(), "src/data/catalog.json");
-  return JSON.parse(fs.readFileSync(fp, "utf-8"));
-}
-
-// Event type → plan ID mapping (must match plans.json "id" field)
-const EVENT_PLAN_MAP: Record<string, string[]> = {
-  "求婚": ["proposal"],
-  "婚禮": ["wedding_afterparty", "wedding_ceremony"],
-  "抓周": ["baby"],
-  "派對": ["party", "wedding_afterparty"],
-  "生日": ["party"],
-  "會議": ["meeting"],
-  "場租": ["rental"],
-  "場地": ["rental"],
-  "公司": ["meeting", "party"],
-  "尾牙": ["party"],
+const EVENT_SCENARIO_MAP: Record<string, ScenarioId[]> = {
+  求婚: ["proposal"],
+  婚禮: ["wedding"],
+  抓周: ["family"],
+  家庭: ["family"],
+  生日: ["party"],
+  派對: ["party"],
+  尾牙: ["party"],
+  會議: ["business"],
+  講座: ["business"],
+  公司: ["business", "party"],
+  場租: ["venue"],
+  場地: ["venue"],
 };
 
-/**
- * Recommend plans based on user's slots
- */
+const SCENARIO_SLUG_MAP: Record<ScenarioId, string> = {
+  proposal: "proposal",
+  wedding: "wedding",
+  party: "party",
+  family: "baby",
+  business: "meeting",
+  venue: "rental",
+};
+
+function toAddonSelections(
+  addonSelections: Record<string, number>
+): QuoteAddonSelection[] {
+  return Object.entries(addonSelections)
+    .filter(([, qty]) => qty > 0)
+    .map(([addonId, qty]) => ({ addonId, qty }));
+}
+
+function buildScenarioRecommendation(
+  scenarioId: ScenarioId
+): RecommendationOption[] {
+  const scenario = v2ScenarioConfigs.find((item) => item.id === scenarioId);
+  if (!scenario) return [];
+
+  const visual = getScenarioPresentation(scenario.id);
+  const bundles = listActiveBundles({ scenarioId: scenario.id });
+  const slug = SCENARIO_SLUG_MAP[scenario.id];
+
+  if (bundles.length === 0) {
+    const popularAddons = listPopularAddons({ scenarioId: scenario.id, limit: 3 });
+    const highlightItems =
+      popularAddons.length > 0
+        ? popularAddons.map((item) => item.name)
+        : v2VenueConfig.baseIncludes.slice(0, 3);
+
+    return [
+      {
+        id: `scenario:${scenario.id}`,
+        scenarioId: scenario.id,
+        name: `${scenario.name}場地配置`,
+        shortName: scenario.name,
+        icon: scenario.icon,
+        accentColor: visual.accentColor,
+        coverImage: visual.image,
+        tagline: scenario.description,
+        description: `${scenario.description}，可從場租開始，再逐步加入加購內容。`,
+        highlights: highlightItems,
+        priceWeekday: v2VenueConfig.weekdayPrice,
+        priceWeekend: v2VenueConfig.weekendPrice,
+        priceUnit: "起",
+        suitableFor: visual.suitableFor,
+        duration: `${v2VenueConfig.baseDurationHours} 小時`,
+        includes: [],
+        allowedAddons: listActiveAddons({ scenarioId: scenario.id }).map(
+          (item) => item.id
+        ),
+        slug,
+      },
+    ];
+  }
+
+  return bundles.map((bundle) => {
+    const bundleItems = resolveBundleItems(bundle.id);
+
+    return {
+      id: bundle.id,
+      scenarioId: scenario.id,
+      bundleId: bundle.id,
+      name: bundle.name,
+      shortName: bundle.name,
+      icon: scenario.icon,
+      accentColor: visual.accentColor,
+      coverImage: visual.image,
+      tagline: bundle.summary,
+      description: `${scenario.description}，推薦從「${bundle.name}」開始，再依需要微調。`,
+      highlights: bundleItems.map((item) => item.addon.name).slice(0, 4),
+      priceWeekday: v2VenueConfig.weekdayPrice + bundle.bundlePrice,
+      priceWeekend: v2VenueConfig.weekendPrice + bundle.bundlePrice,
+      priceUnit: "起",
+      suitableFor: visual.suitableFor,
+      duration: `${v2VenueConfig.baseDurationHours} 小時`,
+      includes: bundleItems.map((item) => item.addon.id),
+      allowedAddons: listActiveAddons({ scenarioId: scenario.id }).map(
+        (item) => item.id
+      ),
+      slug,
+    };
+  });
+}
+
+function loadRecommendations(): RecommendationOption[] {
+  return v2ScenarioConfigs.flatMap((scenario) =>
+    buildScenarioRecommendation(scenario.id)
+  );
+}
+
+function getMatchedScenarios(eventType?: string): ScenarioId[] {
+  if (!eventType) return [];
+
+  const matched = Object.entries(EVENT_SCENARIO_MAP)
+    .filter(([keyword]) => eventType.includes(keyword))
+    .flatMap(([, scenarioIds]) => scenarioIds);
+
+  return [...new Set(matched)];
+}
+
 export function recommendPlans(slots: SessionSlots): Plan[] {
-  const allPlans = loadPlans().filter((p) => p.priceWeekday > 0); // exclude custom (price=0)
-  let candidates = allPlans;
+  const allRecommendations = loadRecommendations();
+  let candidates = allRecommendations;
+  const matchedScenarios = getMatchedScenarios(slots.eventType);
 
-  // Filter by event type
-  if (slots.eventType) {
-    const matched = Object.entries(EVENT_PLAN_MAP)
-      .filter(([key]) => slots.eventType!.includes(key))
-      .flatMap(([, ids]) => ids);
-
-    if (matched.length > 0) {
-      const byType = allPlans.filter((p) => matched.includes(p.id));
-      if (byType.length > 0) candidates = byType;
+  if (matchedScenarios.length > 0) {
+    const byScenario = allRecommendations.filter((item) =>
+      matchedScenarios.includes(item.scenarioId)
+    );
+    if (byScenario.length > 0) {
+      candidates = byScenario;
     }
   }
 
-  // Filter by budget
   if (slots.budget && slots.budget > 0) {
-    const budgetMax = slots.budget * 1.2; // 20% tolerance
-    const inBudget = candidates.filter((p) => p.priceWeekday <= budgetMax);
+    const budgetMax = slots.budget * 1.2;
+    const inBudget = candidates.filter((item) => item.priceWeekday <= budgetMax);
 
     if (inBudget.length > 0) {
-      // Some type-matched plans fit the budget
       candidates = inBudget;
     } else {
-      // No type-matched plan fits budget → include ALL plans in budget as alternatives
-      const allInBudget = allPlans.filter((p) => p.priceWeekday <= budgetMax);
-      // Combine: cheapest type-matched (1) + budget alternatives (2)
-      const cheapestTyped = [...candidates].sort((a, b) => a.priceWeekday - b.priceWeekday).slice(0, 1);
-      candidates = [...cheapestTyped, ...allInBudget.filter((p) => !cheapestTyped.find((t) => t.id === p.id))];
+      candidates = [...candidates].sort(
+        (a, b) => a.priceWeekday - b.priceWeekday
+      );
     }
-  }
 
-  // Sort: closest to budget first
-  if (slots.budget && slots.budget > 0) {
     candidates.sort((a, b) => {
       const distA = Math.abs(a.priceWeekday - slots.budget!);
       const distB = Math.abs(b.priceWeekday - slots.budget!);
       return distA - distB;
     });
   } else {
-    candidates.sort((a, b) => a.priceWeekday - b.priceWeekday);
+    candidates = [...candidates].sort((a, b) => a.priceWeekday - b.priceWeekday);
   }
 
-  // Return top 3
   return candidates.slice(0, 3);
 }
 
-/**
- * Suggest addons for a specific plan
- */
-export function suggestAddons(planId: string): { name: string; price: number; unit: string; description: string }[] {
-  const plans = loadPlans();
-  const plan = plans.find((p) => p.id === planId);
+export function suggestAddons(planId: string): {
+  name: string;
+  price: number;
+  unit: string;
+  description: string;
+}[] {
+  const plan = getPlan(planId);
   if (!plan) return [];
 
-  const catalog = loadCatalog();
-  const allItems = catalog.categories.flatMap((c) => c.items);
+  const candidates =
+    listPopularAddons({ scenarioId: plan.scenarioId, limit: 6 }).length > 0
+      ? listPopularAddons({ scenarioId: plan.scenarioId, limit: 6 })
+      : listActiveAddons({ scenarioId: plan.scenarioId });
 
-  return plan.allowedAddons
-    .filter((id) => !plan.includes.includes(id)) // exclude already-included
-    .map((id) => allItems.find((item) => item.id === id))
-    .filter((item): item is CatalogItem => !!item)
+  return candidates
+    .filter((item) => !plan.includes.includes(item.id))
+    .slice(0, 5)
     .map((item) => ({
       name: item.name,
-      price: item.pricePackage,
+      price: item.priceWeekday,
       unit: item.unit,
       description: item.description,
     }));
 }
 
-/**
- * Get plan details by ID
- */
-export function getPlan(planId: string): Plan | undefined {
-  return loadPlans().find((p) => p.id === planId);
+export function getPlan(planId: string): RecommendationOption | undefined {
+  return loadRecommendations().find((item) => item.id === planId);
 }
 
-/**
- * Calculate total price for a plan + addons selection
- */
 export function calculateTotal(
   planId: string,
   addonSelections: Record<string, number>,
   isWeekend: boolean
 ): { planPrice: number; addonsTotal: number; total: number; breakdown: string[] } {
-  const plans = loadPlans();
-  const plan = plans.find((p) => p.id === planId);
-  if (!plan) return { planPrice: 0, addonsTotal: 0, total: 0, breakdown: [] };
-
-  const catalog = loadCatalog();
-  const allItems = catalog.categories.flatMap((c) => c.items);
-
-  const planPrice = isWeekend ? plan.priceWeekend : plan.priceWeekday;
-  let addonsTotal = 0;
-  const breakdown: string[] = [`${plan.name}: NT$${planPrice.toLocaleString()}`];
-
-  for (const [addonId, qty] of Object.entries(addonSelections)) {
-    if (qty <= 0) continue;
-    const item = allItems.find((i) => i.id === addonId);
-    if (!item) continue;
-    const price = item.pricePackage * qty;
-    addonsTotal += price;
-    breakdown.push(`${item.name} ×${qty}: NT$${price.toLocaleString()}`);
+  const plan = getPlan(planId);
+  if (!plan) {
+    return { planPrice: 0, addonsTotal: 0, total: 0, breakdown: [] };
   }
 
-  return { planPrice, addonsTotal, total: planPrice + addonsTotal, breakdown };
+  const quote = quoteBooking({
+    date: isWeekend ? WEEKEND_SAMPLE : WEEKDAY_SAMPLE,
+    bundleId: plan.bundleId,
+    addonSelections: toAddonSelections(addonSelections),
+  });
+
+  const breakdown = [
+    `${v2VenueConfig.name}: NT$${quote.baseAmount.toLocaleString()}`,
+    ...quote.lines.map(
+      (line) => `${line.name}${line.qty > 1 ? ` ×${line.qty}` : ""}: NT$${line.subtotal.toLocaleString()}`
+    ),
+  ];
+
+  if (quote.bundleDiscountAmount > 0) {
+    breakdown.push(`組合折扣: -NT$${quote.bundleDiscountAmount.toLocaleString()}`);
+  }
+
+  return {
+    planPrice: quote.baseAmount,
+    addonsTotal: quote.addonsAmount,
+    total: quote.totalAmount,
+    breakdown,
+  };
+}
+
+export function getPlanDetailUrl(planId: string): string {
+  const plan = getPlan(planId);
+  if (!plan) return "/book";
+  return getLegacyPlanBookingHref(plan.slug);
 }

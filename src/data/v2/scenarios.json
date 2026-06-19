@@ -1,0 +1,44 @@
+[
+  {
+    "id": "proposal",
+    "name": "求婚",
+    "icon": "fas fa-heart",
+    "description": "適合驚喜求婚、浪漫告白與小型儀式感活動",
+    "sortOrder": 10
+  },
+  {
+    "id": "wedding",
+    "name": "婚禮",
+    "icon": "fas fa-ring",
+    "description": "適合證婚、婚禮派對、After Party 與婚禮佈置",
+    "sortOrder": 20
+  },
+  {
+    "id": "party",
+    "name": "派對",
+    "icon": "fas fa-birthday-cake",
+    "description": "適合生日、慶生、朋友聚會與風格派對",
+    "sortOrder": 30
+  },
+  {
+    "id": "family",
+    "name": "家庭慶典",
+    "icon": "fas fa-baby",
+    "description": "適合抓周、性別派對、家庭聚餐與親友慶祝",
+    "sortOrder": 40
+  },
+  {
+    "id": "business",
+    "name": "企業活動",
+    "icon": "fas fa-briefcase",
+    "description": "適合會議、簡報、講座、工作坊、品牌交流與企業包場活動",
+    "sortOrder": 50
+  },
+  {
+    "id": "venue",
+    "name": "純場地",
+    "icon": "fas fa-building",
+    "description": "只租空間，自行安排活動流程與現場內容",
+    "sortOrder": 60
+  }
+]

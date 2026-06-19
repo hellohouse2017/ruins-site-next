@@ -1,0 +1,408 @@
+{
+  "categories": [
+    {
+      "id": "time",
+      "name": "時間",
+      "icon": "🕐",
+      "items": [
+        {
+          "id": "venue_extra_hr",
+          "name": "場地加時",
+          "unit": "小時",
+          "priceWeekday": 3000,
+          "priceWeekend": 5000,
+          "type": "counter",
+          "max": 12,
+          "minOrder": 0,
+          "description": "延長場地使用時間，每小時計費",
+          "scenarioTags": ["proposal", "wedding", "party", "family", "business", "venue"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 10
+        }
+      ]
+    },
+    {
+      "id": "equipment",
+      "name": "設備",
+      "icon": "🪑",
+      "items": [
+        {
+          "id": "table_fold_6",
+          "name": "6 人折疊桌",
+          "unit": "張",
+          "priceWeekday": 150,
+          "priceWeekend": 150,
+          "type": "counter",
+          "max": 6,
+          "minOrder": 0,
+          "description": "六人方桌，適合用餐、會議或工作使用",
+          "scenarioTags": ["business", "venue"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 10
+        },
+        {
+          "id": "chair_bamboo_extra",
+          "name": "加租竹節椅",
+          "unit": "張",
+          "priceWeekday": 30,
+          "priceWeekend": 30,
+          "type": "counter",
+          "max": 20,
+          "minOrder": 0,
+          "description": "精緻竹節椅，場地原已含 30 張",
+          "scenarioTags": ["wedding", "party", "family"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 20
+        },
+        {
+          "id": "zhuazhou_kit_rent",
+          "name": "抓周道具組（租用）",
+          "unit": "組",
+          "priceWeekday": 1500,
+          "priceWeekend": 1500,
+          "type": "toggle",
+          "description": "家庭慶典用抓周道具組，適合抓周與寶寶派對",
+          "scenarioTags": ["family"],
+          "popular": true,
+          "active": true,
+          "sortOrder": 30
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "name": "餐飲",
+      "icon": "🍽️",
+      "items": [
+        {
+          "id": "snack_basic",
+          "name": "自助式點心盤（25 人份）",
+          "unit": "份",
+          "priceWeekday": 6000,
+          "priceWeekend": 6000,
+          "type": "toggle",
+          "description": "基本鹹甜點心組合，適合會議、家庭與輕型聚會",
+          "scenarioTags": ["party", "family", "business"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 10
+        },
+        {
+          "id": "snack_deluxe",
+          "name": "精緻自助點心（25 人份）",
+          "unit": "份",
+          "priceWeekday": 15000,
+          "priceWeekend": 15000,
+          "type": "toggle",
+          "description": "精選鹹甜點心搭配，適合求婚、婚禮與派對場合",
+          "scenarioTags": ["proposal", "wedding", "party", "family"],
+          "popular": true,
+          "active": true,
+          "sortOrder": 20
+        },
+        {
+          "id": "meal_deluxe",
+          "name": "精緻自助正餐（25 人份）",
+          "unit": "份",
+          "priceWeekday": 25000,
+          "priceWeekend": 25000,
+          "type": "toggle",
+          "description": "完整正餐自助餐，適合正式宴客與聚餐",
+          "scenarioTags": ["wedding", "family", "business"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 30
+        },
+        {
+          "id": "upgrade_meal",
+          "name": "點心升級正餐（補差價）",
+          "unit": "式",
+          "priceWeekday": 10000,
+          "priceWeekend": 10000,
+          "type": "toggle",
+          "description": "將既有點心方案升級為完整正餐配置",
+          "scenarioTags": ["wedding", "family"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 40
+        },
+        {
+          "id": "box_meal",
+          "name": "西點餐盒",
+          "unit": "盒",
+          "priceWeekday": 220,
+          "priceWeekend": 220,
+          "type": "counter",
+          "max": 200,
+          "minOrder": 20,
+          "description": "精美個人餐盒，20 盒起訂，適合會議與品牌活動",
+          "scenarioTags": ["business"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 50
+        }
+      ]
+    },
+    {
+      "id": "beverage",
+      "name": "酒水",
+      "icon": "🍸",
+      "items": [
+        {
+          "id": "drink_na",
+          "name": "5L 自助無酒精飲品",
+          "unit": "桶",
+          "priceWeekday": 1200,
+          "priceWeekend": 1200,
+          "type": "toggle",
+          "description": "桶裝無酒精飲品，適合會議、家庭與婚禮場合",
+          "scenarioTags": ["wedding", "party", "family", "business", "venue"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 10
+        },
+        {
+          "id": "drink_cocktail",
+          "name": "5L 自助雞尾酒",
+          "unit": "桶",
+          "priceWeekday": 3500,
+          "priceWeekend": 3500,
+          "type": "toggle",
+          "description": "預調雞尾酒桶，適合婚禮、派對與純場地聚會",
+          "scenarioTags": ["wedding", "party", "venue"],
+          "popular": true,
+          "active": true,
+          "sortOrder": 20
+        },
+        {
+          "id": "beer_cart",
+          "name": "啤酒推車（48 罐）",
+          "unit": "台",
+          "priceWeekday": 4500,
+          "priceWeekend": 4500,
+          "type": "toggle",
+          "description": "含 48 罐啤酒與基本陳列，適合婚禮與派對場合",
+          "scenarioTags": ["wedding", "party"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 30
+        },
+        {
+          "id": "bartender_100",
+          "name": "駐場調酒 100 杯（2hr）",
+          "unit": "場",
+          "priceWeekday": 35000,
+          "priceWeekend": 35000,
+          "type": "toggle",
+          "group": "bartender",
+          "description": "專業調酒師現場出杯 100 杯，適合婚禮與派對需求",
+          "scenarioTags": ["wedding", "party"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 40
+        },
+        {
+          "id": "bartender_150",
+          "name": "駐場調酒 150 杯（2hr）",
+          "unit": "場",
+          "priceWeekday": 45000,
+          "priceWeekend": 45000,
+          "type": "toggle",
+          "group": "bartender",
+          "description": "專業調酒師現場出杯 150 杯，適合中型至大型活動",
+          "scenarioTags": ["wedding", "party"],
+          "popular": true,
+          "active": true,
+          "sortOrder": 50
+        },
+        {
+          "id": "bartender_all",
+          "name": "駐場調酒暢飲（2.5hr）",
+          "unit": "場",
+          "priceWeekday": 68000,
+          "priceWeekend": 68000,
+          "type": "toggle",
+          "group": "bartender",
+          "description": "專業調酒師現場暢飲服務，適合完整派對與大型婚禮",
+          "scenarioTags": ["wedding", "party"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 60
+        }
+      ]
+    },
+    {
+      "id": "decoration",
+      "name": "佈置",
+      "icon": "🎨",
+      "items": [
+        {
+          "id": "flower_bouquet",
+          "name": "求婚 / 婚禮花束",
+          "unit": "束",
+          "priceWeekday": 3999,
+          "priceWeekend": 3999,
+          "type": "toggle",
+          "description": "求婚與婚禮用主題花束，可搭配拍照與儀式動線",
+          "scenarioTags": ["proposal", "wedding"],
+          "popular": true,
+          "active": true,
+          "sortOrder": 10
+        },
+        {
+          "id": "merryme_lights_rent",
+          "name": "Marry Me 燈條租用",
+          "unit": "組",
+          "priceWeekday": 1500,
+          "priceWeekend": 1500,
+          "type": "toggle",
+          "description": "求婚主視覺燈條，限場內使用，含基本安裝",
+          "scenarioTags": ["proposal"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 20
+        },
+        {
+          "id": "merryme_lights_custom",
+          "name": "客製化 LED 燈條",
+          "unit": "組",
+          "priceWeekday": 4500,
+          "priceWeekend": 4500,
+          "type": "toggle",
+          "description": "可客製字樣或名字的 LED 燈條，適合求婚與婚禮拍照區",
+          "scenarioTags": ["proposal", "wedding"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 30
+        },
+        {
+          "id": "photo_backdrop_standard",
+          "name": "拍照背板公版",
+          "unit": "面",
+          "priceWeekday": 5000,
+          "priceWeekend": 5000,
+          "type": "toggle",
+          "description": "公版拍照背板，含場內基本安裝",
+          "scenarioTags": ["proposal", "family"],
+          "popular": true,
+          "active": true,
+          "sortOrder": 40
+        },
+        {
+          "id": "photo_backdrop_custom",
+          "name": "拍照背板客製化",
+          "unit": "面",
+          "priceWeekday": 7000,
+          "priceWeekend": 7000,
+          "type": "toggle",
+          "description": "客製主題拍照背板，含場內基本安裝",
+          "scenarioTags": ["proposal", "family"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 50
+        },
+        {
+          "id": "balloon_set",
+          "name": "氣球佈置組",
+          "unit": "式",
+          "priceWeekday": 8000,
+          "priceWeekend": 8000,
+          "type": "toggle",
+          "description": "含基本氣球設計與場內安裝，適合家庭慶典與派對拍照區",
+          "scenarioTags": ["family", "party"],
+          "popular": true,
+          "active": true,
+          "sortOrder": 60
+        },
+        {
+          "id": "decor_table",
+          "name": "取餐區餐桌佈置",
+          "unit": "式",
+          "priceWeekday": 6000,
+          "priceWeekend": 6000,
+          "type": "toggle",
+          "description": "美化取餐區域，含桌布、擺設與基本花藝陳列",
+          "scenarioTags": ["proposal", "wedding", "party", "family"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 70
+        },
+        {
+          "id": "backdrop_flower",
+          "name": "鮮花主題背板",
+          "unit": "面",
+          "priceWeekday": 23800,
+          "priceWeekend": 23800,
+          "type": "toggle",
+          "description": "以鮮花打造主視覺拍照背板，適合證婚與正式拍攝",
+          "scenarioTags": ["proposal", "wedding", "family"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 80
+        },
+        {
+          "id": "wedding_flower",
+          "name": "證婚區鮮花佈置",
+          "unit": "式",
+          "priceWeekday": 39800,
+          "priceWeekend": 39800,
+          "type": "toggle",
+          "description": "證婚主區花藝佈置，適合拱門、走道與儀式主視覺",
+          "scenarioTags": ["wedding"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 90
+        }
+      ]
+    },
+    {
+      "id": "staff",
+      "name": "人員",
+      "icon": "👨‍🎤",
+      "items": [
+        {
+          "id": "host",
+          "name": "儀式主持人",
+          "unit": "場",
+          "priceWeekday": 8000,
+          "priceWeekend": 8000,
+          "type": "toggle",
+          "description": "專業主持人帶動活動流程，適合婚禮、求婚與家庭慶典",
+          "scenarioTags": ["proposal", "wedding", "family"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 10
+        },
+        {
+          "id": "photographer_2hr",
+          "name": "平面攝影師（2hr）",
+          "unit": "場",
+          "priceWeekday": 8000,
+          "priceWeekend": 8000,
+          "type": "toggle",
+          "description": "活動平面攝影服務，含基本修圖檔，適合求婚、婚禮與家庭慶典",
+          "scenarioTags": ["proposal", "wedding", "family"],
+          "popular": true,
+          "active": true,
+          "sortOrder": 20
+        },
+        {
+          "id": "singer",
+          "name": "駐唱歌手（2hr，單人基本演出）",
+          "unit": "場",
+          "priceWeekday": 6000,
+          "priceWeekend": 6000,
+          "type": "toggle",
+          "description": "單人基本演出，適合求婚、婚禮與派對氛圍加強",
+          "scenarioTags": ["proposal", "wedding", "party"],
+          "popular": false,
+          "active": true,
+          "sortOrder": 30
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "deposit": {
+    "venueOnlyFixed": 3000,
+    "withAddonsRate": 0.5
+  },
+  "payment": {
+    "method": "bank_transfer",
+    "bankCode": "",
+    "bankName": "",
+    "accountName": "",
+    "accountNumber": "",
+    "requireLast5": true
+  },
+  "notifications": {
+    "email": true,
+    "line": true
+  },
+  "order": {
+    "prefix": "RUINS",
+    "successPagePath": "/book/success"
+  }
+}

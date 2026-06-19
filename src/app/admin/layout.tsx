@@ -3,32 +3,17 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { A } from "./ui";
 
 /* ─── Auth Context ─── */
 const AuthCtx = createContext<{ authenticated: boolean; logout: () => void }>({ authenticated: false, logout: () => {} });
 
-export function useAdminAuth() { return useContext(AuthCtx); }
-
-/* ─── Shared Styles ─── */
-export const A = {
-  bg: "#0d0d0d",
-  card: "#1a1a1a",
-  cardHover: "#222",
-  border: "#2a2a2a",
-  gold: "#c5a47e",
-  goldDim: "#8a7a5b",
-  textPrimary: "#f0f0f0",
-  textMuted: "#888",
-  danger: "#ef4444",
-  success: "#22c55e",
-  blue: "#3b82f6",
-};
-
 const NAV_ITEMS = [
   { href: "/admin", label: "總覽", icon: "fa-tachometer-alt" },
-  { href: "/admin/plans", label: "方案管理", icon: "fa-clipboard-list" },
+  { href: "/admin/settings", label: "場地設定", icon: "fa-sliders-h" },
+  { href: "/admin/scenarios", label: "情境管理", icon: "fa-shapes" },
+  { href: "/admin/bundles", label: "組合管理", icon: "fa-box-open" },
   { href: "/admin/addons", label: "加購管理", icon: "fa-cart-plus" },
-  { href: "/admin/catalog", label: "品項清單", icon: "fa-database" },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
