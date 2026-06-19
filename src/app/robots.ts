@@ -1,3 +1,4 @@
+import siteConfig from "@/data/site-config.json";
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: "/",
             disallow: ["/admin", "/api/", "/sign"],
         },
-        sitemap: "https://ruins-bar.com/sitemap.xml",
+        sitemap: `${siteConfig.seo.siteUrl}/sitemap.xml`,
     };
 }

@@ -95,6 +95,31 @@ export function Hero() {
               看場地照片
             </Link>
           </div>
+
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/faq"
+              className="inline-flex items-center justify-center rounded-full border px-4 py-2 text-sm font-bold transition"
+              style={{
+                borderColor: "var(--border-primary)",
+                color: "var(--text-primary)",
+                backgroundColor: theme === "dark" ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.45)",
+              }}
+            >
+              常見問題
+            </Link>
+            <Link
+              href="/location"
+              className="inline-flex items-center justify-center rounded-full border px-4 py-2 text-sm font-bold transition"
+              style={{
+                borderColor: "var(--border-primary)",
+                color: "var(--text-primary)",
+                backgroundColor: theme === "dark" ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.45)",
+              }}
+            >
+              交通停車
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 max-w-6xl">

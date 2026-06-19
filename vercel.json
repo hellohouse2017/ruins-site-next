@@ -1,11 +1,5 @@
 {
   "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "ruins.hello-stay.com" }],
-      "destination": "https://ruins-bar.com/$1",
-      "permanent": true
-    },
     { "source": "/zh", "destination": "/", "permanent": true },
     { "source": "/en", "destination": "/", "permanent": true },
     { "source": "/ja", "destination": "/", "permanent": true },

@@ -495,6 +495,22 @@ export default function HomePage() {
               查看檔期與價格
             </Link>
           </div>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/faq"
+              className="inline-flex items-center justify-center rounded-full border px-4 py-2 text-sm font-bold transition"
+              style={{ borderColor: "var(--border-primary)", color: "var(--text-primary)" }}
+            >
+              常見問題
+            </Link>
+            <Link
+              href="/location"
+              className="inline-flex items-center justify-center rounded-full border px-4 py-2 text-sm font-bold transition"
+              style={{ borderColor: "var(--border-primary)", color: "var(--text-primary)" }}
+            >
+              交通停車
+            </Link>
+          </div>
         </div>
       </section>
     </>
